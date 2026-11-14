@@ -22,7 +22,13 @@
 <link rel="preload" href="assets/fonts/manrope-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" href="assets/img/hero-girl.webp" imagesrcset="assets/img/hero-girl-420.webp 420w, assets/img/hero-girl.webp 800w" imagesizes="(max-width:900px) 280px, 380px" fetchpriority="high">
 <link rel="stylesheet" href="assets/css/style.css">
-<script>document.documentElement.classList.add('js')</script>
+<script>
+document.documentElement.classList.add('js');
+// Сайт завжди відкривається з початку: прибираємо якір (#sizes тощо) і не відновлюємо стару позицію
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+window.addEventListener('load', function () { window.scrollTo(0, 0); });
+</script>
 
 <script type="application/ld+json">
 {
@@ -353,7 +359,7 @@
     <a class="dino__link" href="#pick" data-close>Підібрати за зростом ↓</a>
   </div>
 </div>
-<div class="dino is-left" id="dino">
+<div class="dino is-left is-hidden" id="dino">
   <button type="button" class="dino__bubble" id="dino-bubble" tabindex="-1" aria-hidden="true">Допомогти з розміром?</button>
   <button type="button" class="dino__btn" id="dino-btn" aria-label="Написати нам — динозаврик ANNSHOP" aria-expanded="false" aria-controls="dino-menu">
     <span class="dino__body"><img class="dino__img" src="assets/img/dino.webp" width="200" height="179" alt=""></span>
